@@ -21,6 +21,7 @@ export default component$(() => {
       </head>
       <body lang="en">
         <a href="/coolPage">see cool page</a>
+        <a href="/coolPage2">see another cool page</a>
         <RouterOutlet />
         <ServiceWorkerRegister />
       </body>
