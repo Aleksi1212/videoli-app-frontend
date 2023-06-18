@@ -1,3 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.styleAdjustorInput {
+    @apply pl-1 w-[35%] rounded-md bg-primary_button focus:outline-none hover:brightness-90;
+}
