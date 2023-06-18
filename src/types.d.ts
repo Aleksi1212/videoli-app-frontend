@@ -1,4 +1,15 @@
+interface MediaTypes {
+    video: string
+    waterMark: string
+}
+
+interface WaterMarkStyleValues {
+    value: number;
+    max: number;
+}
+
 interface WaterMarkStyleTypes {
-    size: number;
-    opacity: number;
+    size: WaterMarkStyleValues;
+    opacity: WaterMarkStyleValues;
+    rotation: WaterMarkStyleValues;
 }
