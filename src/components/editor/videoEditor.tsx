@@ -1,4 +1,5 @@
 import { component$, useStore, $ } from '@builder.io/qwik';
+import { Image } from '@unpic/qwik';
 
 export const VideoEditor = component$(() => {
     const media = useStore<MediaTypes>({
@@ -64,7 +65,14 @@ export const VideoEditor = component$(() => {
                                 />
                                 {
                                     media.waterMark ? 
-                                        <img src={media.waterMark} class="object-contain aspect-square w-full h-full" alt="waterMark" /> 
+                                        <Image
+                                            src={media.waterMark}
+                                            class="object-contain aspect-square w-full h-full" 
+                                            alt="waterMark" 
+                                            width={100}
+                                            height={100}
+                                            loading="lazy"
+                                        /> 
                                     : 
                                         <p class="text-xl">Insert Image</p>
                                 }
