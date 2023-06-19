@@ -2,6 +2,25 @@
 @tailwind components;
 @tailwind utilities;
 
+.mainHeaderButton {
+    @apply px-5 py-2 rounded-lg  text-textColor hover:opacity-75 active:scale-95
+}
+
+.headerGlassyButton {
+    background: rgba(255, 255, 255, 0.04);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(4.9px);
+    -webkit-backdrop-filter: blur(4.9px);
+    border: 1px solid rgba(255, 255, 255, 0.64);
+}
+
+.header {
+    background: rgba(1, 12, 20, 0.18);
+    border-radius: 16px;
+    backdrop-filter: blur(12.8px);
+    -webkit-backdrop-filter: blur(12.8px);
+}
+
 .styleAdjustorInput {
-    @apply pl-1 w-[35%] rounded-md bg-primary_button focus:outline-none hover:brightness-90;
+    @apply pl-1 w-[25%] rounded-md bg-primary_button focus:outline-none hover:brightness-90;
 }
