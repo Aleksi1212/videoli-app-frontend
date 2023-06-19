@@ -6,19 +6,21 @@ export const VideoEditor = component$(() => {
         waterMark: '',
     });
     const waterMarkStyles = useStore<WaterMarkStyleTypes>({
-        size: { value: 50, max: 100 },
-        opacity: { value: 50, max: 100 },
-        rotation: { value: 180, max: 360 },
+        xPos: { value: 50, max: 100, header: 'Image x-position' },
+        yPos: { value: 50, max: 100, header: 'Image y-position' },
+        size: { value: 50, max: 100, header: 'Image size (%)' },
+        opacity: { value: 50, max: 100, header: 'Image opacity (%)' },
+        rotation: { value: 180, max: 360, header: 'Image rotation (deg)' },
     });
 
     const changeMedia = $((event: any) => {
-        //@ts-ignore
-        media[event.target.name] = URL.createObjectURL(event.target.files[0])
+        const mediaKey = event.target.name as keyof MediaTypes
+        media[mediaKey] = URL.createObjectURL(event.target.files[0])
     })
 
     const changeStyles = $((event: any) => {
-        //@ts-ignore
-        const currentStyleChange: WaterMarkStyleValues = waterMarkStyles[event.target.name];
+        const styleKey = event.target.name as keyof WaterMarkStyleTypes
+        const currentStyleChange: WaterMarkStyleValues = waterMarkStyles[styleKey];
 
         if (event.target.value > currentStyleChange.max) {
             currentStyleChange.value = currentStyleChange.max;
@@ -31,8 +33,8 @@ export const VideoEditor = component$(() => {
         <>
             <div class="flex flex-col gap-3 text-textColor">
                 <div class="flex gap-3">
-                    <div class="w-[40rem] h-[25rem] rounded-lg bg-[#101424] relative overflow-hidden">
-                        <label class="w-full h-full absolute cursor-pointer flex items-center justify-center hover:opacity-75">
+                    <div class="w-[50rem] h-[30rem] rounded-lg bg-[#101424] overflow-hidden">
+                        <label class="w-full h-full cursor-pointer flex items-center justify-center hover:opacity-75">
                             <input 
                                 type="file"
                                 name="video"
@@ -46,13 +48,13 @@ export const VideoEditor = component$(() => {
                                         <source src={media.video} type="video/mp4" />
                                     </video>
                                 :
-                                    <p>Insert Video</p>
+                                    <p class="text-2xl">Insert Video</p>
                             }
                         </label>
                     </div>
-                    <div class="flex flex-col gap-3 w-[10rem]">
-                        <div class="h-[40%] rounded-lg bg-[#101424] relative">
-                            <label class="w-full h-full absolute cursor-pointer flex items-center justify-center hover:opacity-75 overflow-hidden">
+                    <div class="flex flex-col gap-3 w-[12.5rem]">
+                        <div class="h-[40%] rounded-lg bg-[#101424]">
+                            <label class="w-full h-full cursor-pointer flex items-center justify-center hover:opacity-75 overflow-hidden">
                                 <input 
                                     type="file" 
                                     name="waterMark" 
@@ -64,74 +66,41 @@ export const VideoEditor = component$(() => {
                                     media.waterMark ? 
                                         <img src={media.waterMark} class="object-contain aspect-square w-full h-full" alt="waterMark" /> 
                                     : 
-                                        <p>Insert Image</p>
+                                        <p class="text-xl">Insert Image</p>
                                 }
                             </label>
                         </div>
                         <div class="flex flex-col justify-evenly h-[60%] bg-secondary_button px-3 rounded-lg">
-                            <div class="flex gap-2 flex-col text-sm">
-                                <span>Image Size (%)</span>
-                                <div class="flex gap-2 mt-[-5px] items-center">
-                                    <input
-                                        type="range"
-                                        name="size"
-                                        min="0"
-                                        max="100"
-                                        value={waterMarkStyles.size.value}
-                                        class="range range-xs range-primary"
-                                        onChange$={changeStyles}
-                                    />
-                                    <input
-                                        type="number"
-                                        name="size"
-                                        class="styleAdjustorInput"
-                                        value={waterMarkStyles.size.value}
-                                        onChange$={changeStyles}
-                                    />
-                                </div>
-                            </div>
-                            <div class="flex gap-2 flex-col text-sm">
-                                <span>Image Opacity (%)</span>
-                                <div class="flex gap-2 items-center mt-[-5px]">
-                                    <input
-                                        type="range"
-                                        name="opacity"
-                                        min="0"
-                                        max="100"
-                                        value={waterMarkStyles.opacity.value}
-                                        class="range range-xs range-primary"
-                                        onChange$={changeStyles}
-                                    />
-                                    <input
-                                        type="text"
-                                        name="opaxity"
-                                        class="styleAdjustorInput"
-                                        value={waterMarkStyles.opacity.value}
-                                        onChange$={changeStyles}
-                                    />
-                                </div>
-                            </div>
-                            <div class="flex gap-2 flex-col text-sm">
-                                <span>Image Rotation (deg)</span>
-                                <div class="flex gap-2 mt-[-5px] items-center">
-                                    <input
-                                        type="range"
-                                        name="rotation"
-                                        min="0"
-                                        max="360"
-                                        value={waterMarkStyles.rotation.value}
-                                        class="range range-xs range-primary"
-                                        onChange$={changeStyles}
-                                    />
-                                    <input
-                                        type="number"
-                                        name="rotation"
-                                        class="styleAdjustorInput"
-                                        value={waterMarkStyles.rotation.value}
-                                        onChange$={changeStyles}
-                                    />
-                                </div>
-                            </div>
+                            {
+                                Object.keys(waterMarkStyles).map((key: string) => {
+                                    const styleKey = key as keyof WaterMarkStyleTypes
+                                    const currentStyle: WaterMarkStyleValues = waterMarkStyles[styleKey]
+
+                                    return (
+                                        <div class="flex gap-2 flex-col text-sm">
+                                            <span>{currentStyle.header}</span>
+                                            <div class="flex gap-2 mt-[-5px] items-center">
+                                                <input
+                                                    type="range"
+                                                    name={key}
+                                                    min={0}
+                                                    max={currentStyle.max}
+                                                    value={currentStyle.value}
+                                                    class="range range-xs range-primary"
+                                                    onChange$={changeStyles}
+                                                />
+                                                <input
+                                                    type="number"
+                                                    name={key}
+                                                    class="styleAdjustorInput"
+                                                    value={currentStyle.value}
+                                                    onChange$={changeStyles}
+                                                />
+                                            </div>
+                                        </div>
+                                    )
+                                })
+                            }
                         </div>
                     </div>
                 </div>
