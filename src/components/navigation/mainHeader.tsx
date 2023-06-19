@@ -3,6 +3,7 @@ import { Link } from '@builder.io/qwik-city';
 import { Image } from '@unpic/qwik';
 
 import star from '../../icons/star.webp'
+import coffee from '../../icons/coffee.webp'
 
 export const MainHeader = component$(() => {
     return (
@@ -20,8 +21,9 @@ export const MainHeader = component$(() => {
                     <p>Star on github</p>
                     <Image src={star} alt="star" width={24} height={24} loading="lazy" />
                 </a>
-                <Link href="/buyCoffee" class="mainHeaderButton headerGlassyButton">
-                    Buy me coffee
+                <Link href="/coffee" class="mainHeaderButton headerGlassyButton flex gap-2">
+                    <p>Buy me coffee</p>
+                    <Image src={coffee} alt="coffee" width={24} height={24} loading="lazy" />
                 </Link>
             </div>
         </header>
