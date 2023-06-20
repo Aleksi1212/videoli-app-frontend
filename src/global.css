@@ -24,6 +24,9 @@ html {
   -moz-tab-size: 4;
   -o-tab-size: 4;
   tab-size: 4;
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+
 }
 
 body {
@@ -32,7 +35,8 @@ body {
   line-height: inherit;
   background-color: #010c14;
   font-family: 'Ubuntu', sans-serif;
-
+  scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
 /**
@@ -47,12 +51,16 @@ html {
   -moz-tab-size: 4;
   -o-tab-size: 4;
   tab-size: 4;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
 }
 
 body {
   padding: 0;
   line-height: inherit;
   font-family: 'Ubuntu', sans-serif;
+  scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
 input[type="number"]::-webkit-inner-spin-button,
