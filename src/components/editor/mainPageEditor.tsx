@@ -1,7 +1,7 @@
 import { component$, useStore, $ } from '@builder.io/qwik';
 import { Image } from '@unpic/qwik';
 
-export const VideoEditor = component$(() => {
+export const MainPageEditor = component$(() => {
     const media = useStore<MediaTypes>({
         video: '',
         waterMark: '',
@@ -113,7 +113,7 @@ export const VideoEditor = component$(() => {
                     </div>
                 </div>
 
-                <button class="w-full p-4 text-xl rounded-full bg-primary_button hover:brightness-95 active:scale-[99%]">
+                <button class="w-full p-4 text-xl rounded-lg bg-primary_button hover:brightness-95 active:scale-[99%]">
                     Download
                 </button>
             </div>
