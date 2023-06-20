@@ -7,7 +7,7 @@ module.exports = {
             background: '#010c14',
             primary_button: '#384ffa',
             secondary_button: '#101c44',
-            accent: '#4f05c7',
+            accentColor: '#4f05c7',
         },
         extend: {},
     },
