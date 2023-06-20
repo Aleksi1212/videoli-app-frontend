@@ -1,14 +1,44 @@
 import { component$ } from '@builder.io/qwik';
-import { VideoEditor } from '~/components/editor/videoEditor';
+import { MainPageEditor } from '~/components/editor/mainPageEditor';
 import { MainHeader } from '~/components/navigation/mainHeader';
 import { type DocumentHead } from '@builder.io/qwik-city';
+
+import { Image } from '@unpic/qwik';
+import logo from '~/icons/logo.svg';
 
 export default component$(() => {
     return (
         <>
-            <div class="w-full h-[100svh] flex justify-center items-center">
-                <VideoEditor />
-            </div>
+            <section class="w-full h-[100svh] flex relative justify-center">
+                <div class="absolute top-52 flex flex-col gap-20 items-center">
+                    <h1 class="text-5xl text-textColor top-52 px-5">
+                        {'With '}
+                        <span class="text-accentColor font-bold">videoli</span>
+                        {' you can add watermaks to your videos'}
+                        <span class="text-accentColor font-bold">.</span>
+                    </h1>
+                    <a href="#editor">
+                        <Image
+                            src={logo}
+                            alt="logo"
+                            width={200}
+                            height={200}
+                            loading="lazy"
+                        />
+                    </a>
+                </div>
+            </section>
+
+            <section
+                class="w-full h-[100svh] flex justify-center items-center"
+                id="editor"
+            >
+                <MainPageEditor />
+            </section>
+
+            <footer class="w-full h-[50svh] mt-56 bg-accentColor rounded-t-3xl grid footer-center text-textColor">
+                <h1 class="text-4xl">cool footer</h1>
+            </footer>
 
             <MainHeader />
         </>
