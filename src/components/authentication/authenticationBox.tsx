@@ -5,7 +5,7 @@ import { type SubmitHandler, useForm, zodForm$ } from '@modular-forms/qwik';
 import { useEmailLoader } from '~/routes/logIn';
 
 export const AuthenticationBox = component$(() => {
-    const [_, { Form, Field }] = useForm<EmailForm>({
+    const [, { Form, Field }] = useForm<EmailForm>({
         loader: useEmailLoader(),
         validate: zodForm$(emailSchema),
     });
@@ -24,9 +24,9 @@ export const AuthenticationBox = component$(() => {
     });
 
     const handleSubmit: SubmitHandler<EmailForm> = $((values) => {
-        console.log(values);
+        console.log(values)
         codeSent.value = true
-    });
+    })
 
     if (codeSent.value) {
         return <h1>Code sent</h1>
