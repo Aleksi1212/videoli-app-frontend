@@ -1,16 +1,20 @@
 import { component$ } from '@builder.io/qwik';
-import { routeLoader$, z, type DocumentHead } from '@builder.io/qwik-city';
+import { routeLoader$, type DocumentHead } from '@builder.io/qwik-city';
 import type { InitialValues } from '@modular-forms/qwik';
+import type {
+    EmailForm,
+    AuthenticationCodeForm,
+} from '~/dataHandler/schemas';
 
 import { AuthenticationBox } from '~/components/authentication/authenticationBox';
 
-const logInSchema = z.object({
-    email: z.string().min(1, 'Please enter your email').email(),
-});
-type LogInForm = z.infer<typeof logInSchema>;
-
-export const useLogInLoader = routeLoader$<InitialValues<LogInForm>>(() => ({
+export const useEmailLoader = routeLoader$<InitialValues<EmailForm>>(() => ({
     email: '',
+}));
+export const useAuthenticationCodeLoader = routeLoader$<
+    InitialValues<AuthenticationCodeForm>
+>(() => ({
+    code: '',
 }));
 
 export default component$(() => {
