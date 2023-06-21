@@ -78,7 +78,7 @@ export const MainPageEditor = component$(() => {
                                     waterMarkStyles[styleKey];
 
                                 return (
-                                    <div class="flex gap-2 flex-col text-sm">
+                                    <div class="flex gap-2 flex-col text-sm" key={key}>
                                         <label for={key}>{currentStyle.header}</label>
                                         <div class="flex gap-2 mt-[-5px] items-center">
                                             <input

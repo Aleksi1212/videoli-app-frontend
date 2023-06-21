@@ -1,11 +1,11 @@
 import { component$, useVisibleTask$, useSignal, $ } from '@builder.io/qwik';
 import { emailSchema, type EmailForm } from '~/dataHandler/schemas';
-import { SubmitHandler, useForm, zodForm$ } from '@modular-forms/qwik';
+import { type SubmitHandler, useForm, zodForm$ } from '@modular-forms/qwik';
 
 import { useEmailLoader } from '~/routes/logIn';
 
 export const AuthenticationBox = component$(() => {
-    const [emailForm, { Form, Field }] = useForm<EmailForm>({
+    const [_, { Form, Field }] = useForm<EmailForm>({
         loader: useEmailLoader(),
         validate: zodForm$(emailSchema),
     });
@@ -23,7 +23,7 @@ export const AuthenticationBox = component$(() => {
         }
     });
 
-    const handleSubmit: SubmitHandler<EmailForm> = $((values, event) => {
+    const handleSubmit: SubmitHandler<EmailForm> = $((values) => {
         console.log(values);
         codeSent.value = true
     });
