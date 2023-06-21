@@ -43,6 +43,7 @@
     "wrangler": "^3.0.0"
   },
   "dependencies": {
+    "@modular-forms/qwik": "^0.17.1",
     "@unpic/qwik": "^0.0.19"
   }
 }
