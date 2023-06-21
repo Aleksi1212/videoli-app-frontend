@@ -23,9 +23,8 @@ export const AuthenticationBox = component$(() => {
         }
     });
 
-    const handleSubmit: SubmitHandler<EmailForm> = $((values) => {
+    const handleSubmit = $((values: any) => {
         console.log(values)
-        codeSent.value = true
     })
 
     if (codeSent.value) {
@@ -43,7 +42,7 @@ export const AuthenticationBox = component$(() => {
                 </h1>
 
                 <Form
-                    onSubmit$={$(handleSubmit)}
+                    onSubmit$={handleSubmit}
                     class="flex justify-center p-7 text-textColor"
                 >
                     <Field name="email">
