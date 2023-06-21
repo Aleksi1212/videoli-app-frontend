@@ -43,7 +43,7 @@ export const AuthenticationBox = component$(() => {
                 </h1>
 
                 <Form
-                    onSubmit$={handleSubmit}
+                    onSubmit$={$(handleSubmit)}
                     class="flex justify-center p-7 text-textColor"
                 >
                     <Field name="email">
