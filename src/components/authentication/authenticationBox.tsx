@@ -1,6 +1,6 @@
 import { component$, useVisibleTask$, useSignal, $ } from '@builder.io/qwik';
 import { emailSchema, type EmailForm } from '~/dataHandler/schemas';
-import { type SubmitHandler, useForm, zodForm$ } from '@modular-forms/qwik';
+import { useForm, zodForm$ } from '@modular-forms/qwik';
 
 import { useEmailLoader } from '~/routes/logIn';
 
