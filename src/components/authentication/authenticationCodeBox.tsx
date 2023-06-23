@@ -22,7 +22,17 @@ export const AuthenticationCodeBox = component$(() => {
 
     useVisibleTask$(() => {
         const params = new URLSearchParams(window.location.search)
-        sentToEmail.value = params.get('sentTo') || ''
+        const sentTo = params.get('sentTo') || ''
+        const storage = JSON.parse(
+            localStorage.getItem('codeSent') || '{}'
+        )
+
+        if (storage.sentTo === sentTo) {
+            sentToEmail.value = sentTo
+        } else {
+            window.location.href = '/signIn'
+        }
+
         loading.value = false
     })
 
@@ -35,7 +45,7 @@ export const AuthenticationCodeBox = component$(() => {
             <div class="w-[28rem] h-[32rem] mt-24 bg-secondary_button rounded-xl flex flex-col justify-evenly items-center">
                 <AuthenticationBoxImage />
 
-                <div class="w-full px-10 gap-5 flex flex-col">
+                <div class="w-full px-10 gap-7 flex flex-col">
                     <AuthenticationBoxTitle authStep="code" email={sentToEmail.value} />
 
                     <Form class="flex flex-col justify-center text-textColor gap-3">
@@ -51,7 +61,7 @@ export const AuthenticationCodeBox = component$(() => {
                                         maxLength={6}
                                     />
                                     {field.error && (
-                                        <h1 class="text-lg text-[#ED2939] underline absolute pl-1 top-[-2rem] font-[500]">
+                                        <h1 class="text-lg text-warning underline absolute pl-1 top-[-2rem] font-[500]">
                                             {field.error}
                                         </h1>
                                     )}
