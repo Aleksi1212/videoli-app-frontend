@@ -11,8 +11,8 @@ export const MainHeader = component$(() => {
             <h1 class="text-5xl text-[white]">Videoli</h1>
 
             <div class="flex gap-3 items-center">
-                <Link href="/logIn" class="mainHeaderButton bg-primary_button">
-                    <p>Sign up</p>
+                <Link href="/signIn" class="mainHeaderButton bg-primary_button">
+                    <p>Sign In</p>
                 </Link>
 
                 <div class="h-full border-l"></div>
