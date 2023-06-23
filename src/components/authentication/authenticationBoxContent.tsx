@@ -37,7 +37,7 @@ export const AuthenticationBoxTitle = component$(
 export const AuthenticationBoxImage = component$(() => {
     return (
         <div class="flex flex-col items-center gap-1">
-            <Image src={logo} width={100} height={100} loading="lazy" />
+            <Image src={logo} alt="logo" width={100} height={100} loading="lazy" />
             <h1 class="text-primary_button text-2xl">Videoli</h1>
         </div>
     );
