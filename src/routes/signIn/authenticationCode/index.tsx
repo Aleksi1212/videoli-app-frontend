@@ -3,7 +3,7 @@ import { routeLoader$, type DocumentHead } from '@builder.io/qwik-city';
 import type { InitialValues } from '@modular-forms/qwik';
 import type { AuthenticationCodeForm } from '~/dataHandler/schemas';
 
-import { AuthenticationCodeBox } from '~/components/authentication/authentiactionCodeBox';
+import { AuthenticationCodeBox } from '~/components/authentication/authenticationCodeBox';
 
 export const useAuthenticationCodeLoader = routeLoader$<
     InitialValues<AuthenticationCodeForm>
