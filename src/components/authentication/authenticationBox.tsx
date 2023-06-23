@@ -13,6 +13,10 @@ export const AuthenticationBox = component$(() => {
         loader: useEmailLoader(),
         validate: zodForm$(emailSchema),
     });
+    const formErrorMessages = {
+        warning: 'Please enter your email',
+        error: 'Invalid email',
+    };
 
     const loading = useSignal<boolean>(true);
     const codeSent = useSignal<boolean>(false);
@@ -61,7 +65,7 @@ export const AuthenticationBox = component$(() => {
             <div class="w-[28rem] h-[32rem] mt-24 bg-secondary_button rounded-xl flex flex-col justify-evenly items-center">
                 <AuthenticationBoxImage />
 
-                <div class="w-full px-10 gap-5 flex flex-col">
+                <div class="w-full px-10 gap-7 flex flex-col">
                     <AuthenticationBoxTitle authStep="email" />
 
                     <Form
@@ -79,7 +83,16 @@ export const AuthenticationBox = component$(() => {
                                         class="w-full rounded-lg bg-background text-xl p-2 focus:outline-none"
                                     />
                                     {field.error && (
-                                        <h1 class="text-lg text-[#ED2939] underline absolute pl-1 top-[-2rem] font-[500]">
+                                        <h1
+                                            class="text-lg underline absolute pl-1 top-[-2rem] font-[500]"
+                                            style={{
+                                                color:
+                                                    field.error ===
+                                                    formErrorMessages.warning
+                                                        ? '#f1b465'
+                                                        : '#fa1e4e',
+                                            }}
+                                        >
                                             {field.error}
                                         </h1>
                                     )}
