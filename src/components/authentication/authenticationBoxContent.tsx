@@ -4,7 +4,7 @@ import logo from '~/icons/logo.svg';
 
 export const AuthenticationBoxTitle = component$(
     (props: { authStep: string; email?: string }) => {
-        let content: AuthContent = {
+        const content: AuthContent = {
             title: 'Sign In',
             content:
                 '<p>By signing in you get access to a advanced editor with more features.</p>',
