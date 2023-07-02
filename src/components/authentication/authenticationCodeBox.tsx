@@ -42,7 +42,7 @@ export const AuthenticationCodeBox = component$(() => {
 
     return (
         <>
-            <div class="w-[28rem] h-[32rem] mt-24 bg-secondary_button rounded-xl flex flex-col justify-evenly items-center">
+            <div class="w-[28rem] h-[32rem] mt-24 bg-secondary_button rounded-xl pb-10 flex flex-col justify-between items-center">
                 <AuthenticationBoxImage />
 
                 <div class="w-full px-10 gap-7 flex flex-col">
@@ -70,7 +70,7 @@ export const AuthenticationCodeBox = component$(() => {
                         </Field>
                         <button
                             type="submit"
-                            class="w-full bg-primary_button rounded-lg text-xl py-2 hover:brightness-75 active:scale-95"
+                            class="w-full bg-primary_button rounded-lg text-xl py-2 hover:brightness-90 active:scale-[.99]"
                         >
                             Sign In
                         </button>
