@@ -1,10 +1,10 @@
 import { component$ } from '@builder.io/qwik';
-import { MainPageEditor } from '~/components/editor/mainPageEditor';
+import { MainPageEditor } from '~/components/editing/open/editor';
 import { MainHeader } from '~/components/navigation/mainHeader';
 import { type DocumentHead } from '@builder.io/qwik-city';
 
 import { Image } from '@unpic/qwik';
-import logo from '~/icons/logo.svg';
+import logo1 from '~/icons/logo1.svg';
 
 export default component$(() => {
     return (
@@ -19,8 +19,8 @@ export default component$(() => {
                     </h1>
                     <a href="#editor">
                         <Image
-                            src={logo}
-                            alt="logo"
+                            src={logo1}
+                            alt="logo1"
                             width={200}
                             height={200}
                             loading="lazy"
