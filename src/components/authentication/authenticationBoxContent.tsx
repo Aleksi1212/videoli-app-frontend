@@ -1,6 +1,6 @@
 import { component$ } from '@builder.io/qwik';
 import { Image } from '@unpic/qwik';
-import logo from '~/icons/logo.svg';
+import logo2 from '~/icons/logo2.svg';
 
 export const AuthenticationBoxTitle = component$(
     (props: { authStep: string; email?: string }) => {
@@ -36,9 +36,8 @@ export const AuthenticationBoxTitle = component$(
 
 export const AuthenticationBoxImage = component$(() => {
     return (
-        <div class="flex flex-col items-center gap-1">
-            <Image src={logo} alt="logo" width={100} height={100} loading="lazy" />
-            <h1 class="text-primary_button text-2xl">Videoli</h1>
+        <div class="flex flex-col justify-center items-center gap-1 w-full h-full">
+            <Image src={logo2} alt="logo2" width={250} height={250} loading="lazy" />
         </div>
     );
 });
