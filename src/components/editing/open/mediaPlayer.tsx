@@ -5,7 +5,7 @@ import { Image } from '@unpic/qwik';
 
 export const MediaPlayer = component$((props: { type: string }) => {
     const media = useContext(MediaContext);
-    const mediaType = props.type as keyof MediaTypes;
+    const mediaType = props.type as keyof MediaType;
 
     return (
         <>

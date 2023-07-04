@@ -7,14 +7,14 @@ import {
 } from '@builder.io/qwik';
 import { MediaPlayer } from './mediaPlayer';
 
-export const MediaContext = createContextId<MediaTypes>('mediaContextId');
+export const MediaContext = createContextId<MediaType>('mediaContextId');
 
 export const MainPageEditor = component$(() => {
-    const media = useStore<MediaTypes>({
+    const media = useStore<MediaType>({
         video: '',
         waterMark: '',
     });
-    const waterMarkStyles = useStore<WaterMarkStyleTypes>({
+    const waterMarkStyles = useStore<WaterMarkStyleType>({
         xPos: { value: 50, max: 100, header: 'Image x-position' },
         yPos: { value: 50, max: 100, header: 'Image y-position' },
         size: { value: 50, max: 100, header: 'Image size (%)' },
@@ -23,13 +23,13 @@ export const MainPageEditor = component$(() => {
     });
 
     const changeMedia = $((event: any) => {
-        const mediaKey = event.target.name as keyof MediaTypes;
+        const mediaKey = event.target.name as keyof MediaType;
         media[mediaKey] = URL.createObjectURL(event.target.files[0]);
     });
 
     const changeStyles = $((event: any) => {
-        const styleKey = event.target.name as keyof WaterMarkStyleTypes;
-        const currentStyleChange: WaterMarkStyleValues =
+        const styleKey = event.target.name as keyof WaterMarkStyleType;
+        const currentStyleChange: WaterMarkStyleValueType =
             waterMarkStyles[styleKey];
 
         if (event.target.value > currentStyleChange.max) {
@@ -73,8 +73,8 @@ export const MainPageEditor = component$(() => {
                         <div class="flex flex-col justify-evenly h-[60%] bg-secondary_button px-3 rounded-lg">
                             {Object.keys(waterMarkStyles).map((key: string) => {
                                 const styleKey =
-                                    key as keyof WaterMarkStyleTypes;
-                                const currentStyle: WaterMarkStyleValues =
+                                    key as keyof WaterMarkStyleType;
+                                const currentStyle: WaterMarkStyleValueType =
                                     waterMarkStyles[styleKey];
 
                                 return (
