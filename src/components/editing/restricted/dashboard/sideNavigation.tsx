@@ -4,19 +4,20 @@ import { Image } from '@unpic/qwik';
 import expand from '~/icons/expand.webp';
 import search from '~/icons/search.webp';
 
-export const SideNavBar = component$((props: { userId: string }) => {
+export const SideNavBar = component$((props: { userData: User }) => {
     const showFavorites = useSignal<boolean>(false);
+    const { name } = props.userData
 
     return (
-        <div class="w-[15%] h-full fixed left-0 text-textColor border-r-2 border-accentColor2">
+        <div class="w-[15%] h-full fixed left-0 text-textColor border-r-2 border-accentColor2 bg-background">
             <div class="w-full p-2 flex flex-col border-b-2 gap-2 border-accentColor2">
                 <button class="p-1.5 flex justify-between items-center rounded-md hover:bg-secondary_button">
                     <div class="flex items-center gap-2">
                         <div class="w-[1.5rem] h-[1.5rem] bg-[white] rounded-full"></div>
                         <p>
-                            {props.userId.length > 15
-                                ? `${props.userId.substring(0, 15)}...`
-                                : props.userId}
+                            {name.length > 15
+                                ? `${name.substring(0, 15)}...`
+                                : name}
                         </p>
                     </div>
                     <Image
