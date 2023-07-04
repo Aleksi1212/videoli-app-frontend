@@ -10,7 +10,7 @@ type ConvertQueryParamValue<TQueryParam extends keyof QueryParamMapping> =
         ? QueryParamMapping[TQueryParam]
         : string;
 
-function convertQueryParam<TQueryParam extends keyof QueryParamMapping>(
+function convertQueryParamType<TQueryParam extends keyof QueryParamMapping>(
     queryParam: string
 ): ConvertQueryParamValue<TQueryParam> {
     const valueMappings: QueryParamMapping = {
@@ -29,4 +29,4 @@ function convertQueryParam<TQueryParam extends keyof QueryParamMapping>(
     }
 }
 
-export { convertQueryParam };
+export { convertQueryParamType };

@@ -3,14 +3,18 @@ import { DocumentHead, routeLoader$ } from '@builder.io/qwik-city';
 
 import { Dashboard } from '~/components/editing/restricted/dashboard/dashboard';
 
+import { convertQueryParam } from '~/utils/queryParamTypeConversion';
+
 export const useUserDataLoad = routeLoader$(async (requestEvent) => {
     const { params, query, redirect } = requestEvent;
 
-    const userId = query.get('uid');
     const { viewing } = params;
-    const possibleViews: string[] = ['drafts', 'recents', 'deleted'];
+    const userId = query.get('uid') || '';
 
-    if (!userId) {
+    const possibleViews: string[] = ['drafts', 'recents', 'deleted'];
+    const validUserId = convertQueryParam<typeof userId>(userId);
+
+    if (!validUserId) {
         redirect(301, '/signIn');
     }
     if (!possibleViews.includes(viewing)) {
