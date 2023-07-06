@@ -23,3 +23,15 @@
 .styleAdjustorInput {
     @apply pl-1 w-[25%] rounded-md bg-primary_button focus:outline-none hover:brightness-90;
 }
+
+.dashboardGrid {
+    display: grid;
+    grid-template-columns: 0.7fr repeat(4, 1fr);
+    grid-template-rows: 0.5fr repeat(4, 1fr);
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+}
+
+.dashboardTopNav { grid-area: 1 / 2 / 2 / 6; }
+.dashboardSideNav { grid-area: 1 / 1 / 6 / 2; }
+.dashboardContent { grid-area: 2 / 2 / 6 / 6; }

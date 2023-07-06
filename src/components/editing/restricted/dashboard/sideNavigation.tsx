@@ -9,7 +9,7 @@ export const SideNavBar = component$((props: { userData: User }) => {
     const { name } = props.userData
 
     return (
-        <div class="w-[15%] h-full fixed left-0 text-textColor border-r-2 border-accentColor2 bg-background">
+        <div class="dashboardSideNav sticky top-0 h-screen text-textColor border-r-2 border-accentColor2 bg-background">
             <div class="w-full p-2 flex flex-col border-b-2 gap-2 border-accentColor2">
                 <button class="p-1.5 flex justify-between items-center rounded-md hover:bg-secondary_button">
                     <div class="flex items-center gap-2">

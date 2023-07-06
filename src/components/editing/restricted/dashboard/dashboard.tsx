@@ -1,13 +1,16 @@
 import { component$ } from '@builder.io/qwik';
 import { TopNavbar } from './topNavigation';
 import { SideNavBar } from './sideNavigation';
+import { Content } from './content';
 
 export const Dashboard = component$<UserData>((props) => {
-    console.log(props)
+    const { user } = props
+
     return (
-        <section class="w-full h-[100svh]">
-            <TopNavbar />
-            <SideNavBar userData={props.user} />
+        <section class="dashboardGrid h-[100dvh]">
+            <TopNavbar userId={user.id} />
+            <SideNavBar userData={user} />
+            <Content />
         </section>
     );
 });
