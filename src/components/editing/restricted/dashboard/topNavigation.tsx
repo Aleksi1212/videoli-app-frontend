@@ -1,20 +1,37 @@
-import { component$ } from '@builder.io/qwik';
+import { component$, useStore, $ } from '@builder.io/qwik';
 import { useLocation } from '@builder.io/qwik-city';
 import { Link } from '@builder.io/qwik-city';
-
 import { Image } from '@unpic/qwik';
-import add from '~/icons/add.webp';
 
-import { createContentSections } from '~/utils/dashboardUtils/changeView';
-import { turnIntoTitle } from '~/utils/stringManipulation';
+import add from '~/icons/add.webp';
+import table_layout from '~/icons/table-layout.webp';
+import list_layout from '~/icons/list-layout.webp';
+
+import { createContentSections } from '~/utils/dashboardUtils/createViews';
+import { upperCaseFirst } from 'upper-case-first';
 
 export const TopNavbar = component$((props: { userId: string }) => {
     const { userId } = props;
     const { viewing } = useLocation().params;
     const contentSections = createContentSections(
-        ['drafts', 'recents', 'deleted'],
+        ['recents', 'drafts', 'deleted'],
         viewing
     );
+    const selectedLayout: DashboardLayoutData = useStore({
+        layout: 'table',
+        colors: {
+            table: '#101c44',
+            list: 'none',
+        },
+    });
+
+    const changeSelectedLayout = $((layout: DashboardLayout) => {
+        selectedLayout.layout = layout;
+        selectedLayout.colors = {
+            table: layout === 'table' ? '#101c44' : 'none',
+            list: layout === 'list' ? '#101c44' : 'none',
+        };
+    });
 
     return (
         <div class="dashboardTopNav sticky top-0 text-textColor flex flex-col border-b-2 border-accentColor2 bg-background">
@@ -32,25 +49,74 @@ export const TopNavbar = component$((props: { userId: string }) => {
                 </button>
             </div>
             <div class=" w-full h-[40%] px-10 flex items-center justify-between">
-                <div class="flex gap-1 text-xs">
+                <div class="flex gap-1 text-sm">
                     {contentSections.map((section) => {
-                        const title = turnIntoTitle(section.label);
+                        const title = upperCaseFirst(section.label);
                         return (
                             <Link
                                 key={section.label}
                                 href={`${section.path}?uid=${userId}`}
                                 class="hover:bg-accentColor2 px-3 py-1 rounded-md"
                                 style={{
-                                    'pointer-events': section.clickable
-                                        ? 'auto'
+                                    'pointer-events': section.selected
+                                        ? 'none'
+                                        : 'auto',
+                                    backgroundColor: section.selected
+                                        ? '#101c44'
                                         : 'none',
-                                    'backgroundColor': section.clickable ? 'none' : '#101c44'
                                 }}
                             >
                                 {title}
                             </Link>
                         );
                     })}
+                </div>
+
+                <div class="flex gap-1">
+                    <button
+                        class="layoutButton"
+                        onClick$={() => changeSelectedLayout('table')}
+                        style={{
+                            backgroundColor: selectedLayout.colors.table,
+                            'pointer-events':
+                                selectedLayout.layout === 'table'
+                                    ? 'none'
+                                    : 'auto',
+                        }}
+                    >
+                        <Image
+                            src={table_layout}
+                            alt="table"
+                            width={18}
+                            height={18}
+                            loading="lazy"
+                        />
+                        <div class="layoutButtonToolTip">
+                            <p>Table</p>
+                        </div>
+                    </button>
+                    <button
+                        class="layoutButton"
+                        onClick$={() => changeSelectedLayout('list')}
+                        style={{
+                            backgroundColor: selectedLayout.colors.list,
+                            'pointer-events':
+                                selectedLayout.layout === 'list'
+                                    ? 'none'
+                                    : 'auto',
+                        }}
+                    >
+                        <Image
+                            src={list_layout}
+                            alt="list"
+                            width={18}
+                            height={18}
+                            loading="lazy"
+                        />
+                        <div class="layoutButtonToolTip">
+                            <p>List</p>
+                        </div>
+                    </button>
                 </div>
             </div>
         </div>
