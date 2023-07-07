@@ -35,3 +35,15 @@
 .dashboardTopNav { grid-area: 1 / 2 / 2 / 6; }
 .dashboardSideNav { grid-area: 1 / 1 / 6 / 2; }
 .dashboardContent { grid-area: 2 / 2 / 6 / 6; }
+
+.layoutButton {
+    @apply p-1.5 rounded-full hover:bg-accentColor2 relative flex justify-center
+}
+
+.layoutButtonToolTip {
+    @apply bg-accentColor2 text-xs absolute top-8 px-1.5 rounded-sm scale-0 transition-all duration-100
+}
+
+.layoutButton:hover > .layoutButtonToolTip {
+    @apply scale-100
+}
