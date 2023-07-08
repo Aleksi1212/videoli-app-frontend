@@ -1,16 +1,23 @@
-import { component$ } from '@builder.io/qwik';
-import { TopNavbar } from './topNavigation';
-import { SideNavBar } from './sideNavigation';
-import { Content } from './content';
+import { component$, useStore } from '@builder.io/qwik';
+import { TopNavbar } from './navigation/topNavigation';
+import { SideNavBar } from './navigation/sideNavigation';
+import { ContentContainer } from './content/contentContainer';
 
 export const Dashboard = component$<UserData>((props) => {
-    const { user } = props
+    const { user } = props;
+    const selectedLayout: DashboardLayoutData = useStore({
+        layout: 'table',
+        colors: {
+            table: '#101c44',
+            list: 'none',
+        },
+    });
 
     return (
-        <section class="dashboardGrid h-[100dvh]">
-            <TopNavbar userId={user.id} />
+        <section class="dashboardGrid h-fit">
+            <TopNavbar userId={user.id} selectedLayout={selectedLayout} />
             <SideNavBar userData={user} />
-            <Content />
+            <ContentContainer contentLayout={selectedLayout.layout} />
         </section>
     );
 });
