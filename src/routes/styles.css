@@ -47,3 +47,7 @@
 .layoutButton:hover > .layoutButtonToolTip {
     @apply scale-100
 }
+
+#contentBox:hover > #favorite {
+    @apply scale-100
+}
