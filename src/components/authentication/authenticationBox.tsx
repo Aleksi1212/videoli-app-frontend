@@ -2,6 +2,7 @@ import { component$, useVisibleTask$, useSignal, $ } from '@builder.io/qwik';
 import { emailSchema, type EmailForm } from '~/dataHandler/schemas';
 import { useForm, zodForm$ } from '@modular-forms/qwik';
 import { useEmailLoader, useEmailAction } from '~/routes/signIn';
+import { useNavigate } from '@builder.io/qwik-city';
 
 import {
     AuthenticationBoxTitle,
@@ -17,6 +18,7 @@ export const AuthenticationBox = component$(() => {
         warning: 'Please enter your email',
         error: 'Invalid email',
     };
+    const navigate = useNavigate()
 
     const loading = useSignal<boolean>(true);
     const codeSent = useSignal<boolean>(false);
@@ -57,13 +59,13 @@ export const AuthenticationBox = component$(() => {
     }
 
     if (codeSent.value && codeSentTo.value) {
-        loading.value = true
-        window.location.href = `/signIn/authenticationCode?sentTo=${codeSentTo.value}`;
+        loading.value = true;
+        navigate(`/signIn/authenticationCode?sentTo=${codeSentTo.value}`);
     }
 
     return (
         <>
-            <div class="w-[28rem] h-[32rem] mt-24 bg-secondary_button rounded-xl pb-10 flex flex-col justify-between items-center">
+            <div class="w-[28rem] h-[32rem] mt-24 rounded-xl pb-10 flex flex-col justify-between items-center authBoxBackground">
                 <AuthenticationBoxImage />
 
                 <div class="w-full px-10 gap-7 flex flex-col">

@@ -1,4 +1,5 @@
-import { component$, useSignal, useVisibleTask$ } from '@builder.io/qwik';
+import { component$, useSignal, useStore, useVisibleTask$ } from '@builder.io/qwik';
+import { useNavigate, useLocation } from '@builder.io/qwik-city';
 import {
     authenticationCodeSchema,
     type AuthenticationCodeForm,
@@ -10,31 +11,39 @@ import {
     AuthenticationBoxTitle,
     AuthenticationBoxImage,
 } from './authenticationBoxContent';
+import { z } from '@builder.io/qwik-city';
+
+const zodEmail = z.object({
+    email: z.string().email()
+})
+type Email = z.infer<typeof zodEmail>
 
 export const AuthenticationCodeBox = component$(() => {
     const [, { Form, Field }] = useForm<AuthenticationCodeForm>({
         loader: useAuthenticationCodeLoader(),
-        validate: zodForm$(authenticationCodeSchema)
-    })
+        validate: zodForm$(authenticationCodeSchema),
+    });
+    const { search } = useLocation().url;
+    const searchParams = new URLSearchParams(search);
+    const navigate = useNavigate();
 
-    const loading = useSignal<boolean>(true)
-    const sentToEmail = useSignal<string>('')
+    const loading = useSignal<boolean>(true);
+    const sentToEmail: Email = useStore({
+        email: ''
+    })
 
     useVisibleTask$(() => {
-        const params = new URLSearchParams(window.location.search)
-        const sentTo = params.get('sentTo') || ''
-        const storage = JSON.parse(
-            localStorage.getItem('codeSent') || '{}'
-        )
+        const sentTo = searchParams.get('sentTo') || '';
+        const storage = JSON.parse(localStorage.getItem('codeSent') || '{}');
 
         if (storage.sentTo === sentTo) {
-            sentToEmail.value = sentTo
+            sentToEmail.email = sentTo; 
         } else {
-            window.location.href = '/signIn'
+            navigate('/signIn');
         }
 
-        loading.value = false
-    })
+        loading.value = false;
+    });
 
     if (loading.value) {
         return <span class="loading loading-spinner w-[5rem]"></span>;
@@ -42,11 +51,14 @@ export const AuthenticationCodeBox = component$(() => {
 
     return (
         <>
-            <div class="w-[28rem] h-[32rem] mt-24 bg-secondary_button rounded-xl pb-10 flex flex-col justify-between items-center">
+            <div class="w-[28rem] h-[32rem] mt-24 bg-secondary_button rounded-xl pb-10 flex flex-col justify-between items-center authBoxBackground">
                 <AuthenticationBoxImage />
 
                 <div class="w-full px-10 gap-7 flex flex-col">
-                    <AuthenticationBoxTitle authStep="code" email={sentToEmail.value} />
+                    <AuthenticationBoxTitle
+                        authStep="code"
+                        email={sentToEmail.email}
+                    />
 
                     <Form class="flex flex-col justify-center text-textColor gap-3">
                         <Field name="code">
