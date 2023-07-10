@@ -18,8 +18,7 @@ export const AuthenticationBoxTitle = component$<AuthBoxTitleProps>((props) => {
     if (props.authStep === 'code') {
         content.title = 'Enter Code';
         content.content = `<p>An access-code has been sent to <span class="text-[#1cb2f5]">${props.email}</span>. Please allow N minutes for the code to arrive, and check any spam/junk folders.</p>`;
-        content.contentStyles =
-            'text-center text-xs opacity-75 bg-background border border-primary_button p-2 rounded-lg';
+        content.contentStyles = 'text-center text-xs opacity-75 p-2 rounded-lg';
     }
 
     return (
