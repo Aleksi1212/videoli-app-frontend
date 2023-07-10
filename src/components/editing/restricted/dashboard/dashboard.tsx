@@ -15,9 +15,9 @@ export const Dashboard = component$<UserData>((props) => {
 
     return (
         <section class="dashboardGrid h-fit">
+            <ContentContainer contentLayout={selectedLayout.layout} />
             <TopNavbar userId={user.id} selectedLayout={selectedLayout} />
             <SideNavBar userData={user} />
-            <ContentContainer contentLayout={selectedLayout.layout} />
         </section>
     );
 });

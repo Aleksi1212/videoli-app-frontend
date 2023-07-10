@@ -10,8 +10,8 @@ export const ContentContainer = component$<ContentProps>((props) => {
     console.log(contentLayout)
 
     return (
-        <div class="dashboardContent flex justify-center p-5">
-            <div class="flex flex-wrap gap-4 h-fit w-full">
+        <div class="dashboardContent justify-center">
+            <div class="flex flex-wrap gap-9 h-fit w-full p-6">
                 <ContentBox
                     image="https://picsum.photos/536/354"
                     title="cool title"

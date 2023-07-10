@@ -15,7 +15,7 @@ export const ContentBox = component$<ContentBoxProps>((props) => {
     const favourited = useSignal<boolean>(false);
 
     return (
-        <div class="w-[20rem] relative text-textColor" id="contentBox">
+        <div class="w-[18rem] relative text-textColor" id="contentBox">
             <button
                 class="w-full flex flex-col cursor-default"
                 onClick$={() => (clicked.value = true)}
@@ -32,7 +32,7 @@ export const ContentBox = component$<ContentBoxProps>((props) => {
                         width={500}
                         height={500}
                         loading="lazy"
-                        objectFit="cover"
+                        class="w-full h-full"
                     />
                 </div>
                 <h1>{title}</h1>
