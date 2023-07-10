@@ -13,7 +13,7 @@ export const useAuthenticationCodeLoader = routeLoader$<
 
 export default component$(() => {
     return (
-        <section class="w-full h-[100svh] flex justify-center">
+        <section class="w-full h-[100svh] flex justify-center gradientBg">
             <AuthenticationCodeBox />
         </section>
     );

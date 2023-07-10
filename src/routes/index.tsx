@@ -8,7 +8,7 @@ import logo1 from '~/icons/logo1.svg';
 
 export default component$(() => {
     return (
-        <>
+        <div class="gradientBg">
             <section class="w-full h-[100svh] flex relative justify-center">
                 <div class="absolute top-52 flex flex-col gap-20 items-center">
                     <h1 class="text-5xl text-textColor top-52 px-5">
@@ -41,7 +41,7 @@ export default component$(() => {
             </footer>
 
             <MainHeader />
-        </>
+        </div>
     );
 });
 
