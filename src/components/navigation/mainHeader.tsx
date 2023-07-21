@@ -7,11 +7,14 @@ import coffee from '~/icons/coffee.webp';
 
 export const MainHeader = component$(() => {
     return (
-        <header class="w-full flex p-5 fixed justify-between top-0 header">
+        <header class="header fixed top-0 flex w-full justify-between p-5">
             <h1 class="text-5xl text-[white]">Videoli</h1>
 
-            <div class="flex gap-3 items-center">
-                <Link href="/signIn" class="mainHeaderButton bg-primary_button">
+            <div class="flex items-center gap-3">
+                <Link
+                    href="/signIn"
+                    class="mainHeaderButton h-11 bg-primary_button"
+                >
                     <p>Sign In</p>
                 </Link>
 
@@ -20,7 +23,7 @@ export const MainHeader = component$(() => {
                 <a
                     href="https://github.com/Aleksi1212/videoli-app-frontend"
                     target="_blank"
-                    class="mainHeaderButton headerGlassyButton"
+                    class="mainHeaderButton headerGlassyButton h-11"
                 >
                     <p>Star on github</p>
                     <div>
@@ -35,7 +38,7 @@ export const MainHeader = component$(() => {
                 </a>
                 <Link
                     href="/coffee"
-                    class="mainHeaderButton headerGlassyButton"
+                    class="mainHeaderButton headerGlassyButton h-11"
                 >
                     <p>Buy me coffee</p>
                     <div>
