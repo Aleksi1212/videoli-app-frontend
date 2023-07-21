@@ -6,7 +6,7 @@
  *
  */
 
-@import url('https://fonts.googleapis.com/css2?family=Ubuntu&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@500&display=swap');
 
 :root {
   --qwik-dark-blue: #006ce9;
@@ -33,7 +33,7 @@ body {
   margin: 0;
   line-height: inherit;
   background-color: #010c14;
-  font-family: 'Ubuntu', sans-serif;
+  font-family: 'Inter', sans-serif;
   scroll-behavior: smooth;
 }
 
@@ -55,7 +55,7 @@ html {
 body {
   padding: 0;
   line-height: inherit;
-  font-family: 'Ubuntu', sans-serif;
+  font-family: 'Inter', sans-serif;
   scroll-behavior: smooth;
 }
 
