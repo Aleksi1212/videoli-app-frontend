@@ -1,42 +1,92 @@
-import { component$ } from '@builder.io/qwik';
+import { component$, useVisibleTask$ } from '@builder.io/qwik';
 import { MainPageEditor } from '~/components/editing/open/editor';
 import { MainHeader } from '~/components/navigation/mainHeader';
 import { type DocumentHead } from '@builder.io/qwik-city';
-
-import { Image } from '@unpic/qwik';
-import logo1 from '~/icons/logo1.svg';
+import { Link } from '@builder.io/qwik-city';
 
 export default component$(() => {
+    useVisibleTask$(() => {
+        let textDisplay = document.getElementById('text');
+        let phrases = ['layers', 'images', 'videos'];
+        let i = 0, j = 0;
+        let currentPhrase: string[] = [];
+        let deleting = false, ended = false;
+
+        function typeWriter() {
+            ended = false;
+            if (textDisplay) {
+                textDisplay.innerHTML = currentPhrase.join('');
+
+                if (i < phrases.length) {
+                    if (!deleting && j <= phrases[i].length) {
+                        currentPhrase.push(phrases[i][j]);
+                        j++;
+                        textDisplay.innerHTML = currentPhrase.join('');
+                    }
+                    if (deleting && j <= phrases[i].length) {
+                        currentPhrase.pop();
+                        j--;
+                        textDisplay.innerHTML = currentPhrase.join('');
+                    }
+                    if (j === phrases[i].length) {
+                        ended = true;
+                        deleting = true;
+                    }
+                    if (deleting && j === 0) {
+                        currentPhrase = [];
+                        deleting = false;
+                        i++;
+                        if (i === phrases.length) i = 0;
+                    }
+                }
+            }
+
+            const spedUp = Math.random() * (80 - 50) + 50;
+            const normalSpeed = Math.random() * (200 - 100) + 100;
+            const time = ended ? 1500 : deleting ? spedUp : normalSpeed;
+            setTimeout(typeWriter, time);
+        }
+        typeWriter();
+    });
+
     return (
         <div class="gradientBg">
-            <section class="w-full h-[100svh] flex relative justify-center">
-                <div class="absolute top-52 flex flex-col gap-20 items-center">
-                    <h1 class="text-5xl text-textColor top-52 px-5">
+            <section class="relative flex h-[100svh] w-full justify-center">
+                <div class="absolute top-52 flex w-full flex-col gap-10 pl-10">
+                    <h1 class="text-glow text-9xl text-textColor">
                         {'With '}
-                        <span class="text-accentColor1 font-bold">videoli</span>
-                        {' you can add watermaks to your videos'}
-                        <span class="text-accentColor1 font-bold">.</span>
+                        <span class="text-gradient font-bold">videoli</span>
+                        {' you can add '}
+                        <br />
+                        <span id="text">layers</span>
+                        {' to your videos '}
                     </h1>
-                    <a href="#editor">
-                        <Image
-                            src={logo1}
-                            alt="logo1"
-                            width={200}
-                            height={200}
-                            loading="lazy"
-                        />
-                    </a>
+
+                    <div class="flex gap-2">
+                        <a
+                            href="#editor"
+                            class="mainHeaderButton bg-primary_button py-3 text-2xl"
+                        >
+                            Try it out
+                        </a>
+                        <Link
+                            href="/signIn"
+                            class="mainHeaderButton headerGlassyButton text-2xl"
+                        >
+                            More features
+                        </Link>
+                    </div>
                 </div>
             </section>
 
             <section
-                class="w-full h-[100svh] flex justify-center items-center"
+                class="flex h-[100svh] w-full items-center justify-center"
                 id="editor"
             >
                 <MainPageEditor />
             </section>
 
-            <footer class="w-full h-[50svh] mt-56 bg-accentColor1 rounded-t-3xl grid footer-center text-textColor">
+            <footer class="footer-center mt-56 grid h-[50svh] w-full rounded-t-3xl bg-background text-textColor">
                 <h1 class="text-4xl">cool footer</h1>
             </footer>
 
