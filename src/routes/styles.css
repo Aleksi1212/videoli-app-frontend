@@ -8,7 +8,7 @@
 }
 
 .mainHeaderButton {
-    @apply px-5 py-2 h-11 rounded-lg flex justify-center relative items-center gap-2  text-textColor hover:opacity-75 active:scale-95
+    @apply px-5 rounded-lg flex justify-center relative items-center gap-2  text-textColor hover:opacity-75 active:scale-95
 }
 
 .headerGlassyButton {
@@ -62,4 +62,14 @@
 
 #contentBox:hover > #favorite {
     @apply scale-100
+}
+
+.text-glow {
+    text-shadow: 0 0 80px rgb(192 219 255 / 35%), 0 0 32px rgb(65 120 255 / 24%);
+}
+
+.text-gradient {
+    background: linear-gradient(to right, #4f05c7, #c43ad6);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
