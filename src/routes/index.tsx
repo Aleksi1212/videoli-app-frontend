@@ -6,8 +6,8 @@ import { Link } from '@builder.io/qwik-city';
 
 export default component$(() => {
     useVisibleTask$(() => {
-        let textDisplay = document.getElementById('text');
-        let phrases = ['layers', 'images', 'videos'];
+        const textDisplay = document.getElementById('text');
+        const phrases = ['layers', 'images', 'videos'];
         let i = 0, j = 0;
         let currentPhrase: string[] = [];
         let deleting = false, ended = false;
